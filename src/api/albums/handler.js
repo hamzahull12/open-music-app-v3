@@ -40,6 +40,22 @@ class AlbumsHandler {
       },
     };
   }
+
+  async putAlbumByIdHandler(req) {
+    // validaton payload data
+    this._validator.albumValidatePayload(req.payload);
+
+    // accommodate parameter values based on id
+    const { id } = req.params;
+
+    // business logic process for Update data
+    await this._service.updateNoteById(id, req.payload);
+
+    return {
+      status: 'success',
+      message: 'Album Berhasil di Perbarui',
+    };
+  }
 }
 
 module.exports = AlbumsHandler;
