@@ -24,6 +24,22 @@ class AlbumsHandler {
     }).code(201);
     return response;
   }
+
+  async getAlbumByIdHandler(req) {
+    // accommodate parameter values based on id
+    const { id } = req.params;
+
+    // business logic process for get data
+    const album = await this._service.getNoteById(id);
+
+    // send response to client
+    return {
+      status: 'success',
+      data: {
+        album,
+      },
+    };
+  }
 }
 
 module.exports = AlbumsHandler;
