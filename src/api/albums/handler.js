@@ -30,7 +30,7 @@ class AlbumsHandler {
     const { id } = req.params;
 
     // business logic process for get data
-    const album = await this._service.getNoteById(id);
+    const album = await this._service.getAlbumById(id);
 
     // send response to client
     return {
@@ -49,11 +49,25 @@ class AlbumsHandler {
     const { id } = req.params;
 
     // business logic process for Update data
-    await this._service.updateNoteById(id, req.payload);
+    await this._service.updateAlbumById(id, req.payload);
 
+    // send response to client
     return {
       status: 'success',
       message: 'Album Berhasil di Perbarui',
+    };
+  }
+
+  async deleteAlbumByIdHandler(req) {
+    // accommodate parameter values based on id
+    const { id } = req.params;
+
+    await this._service.deleteAlbumById(id);
+
+    // send response to client
+    return {
+      status: 'success',
+      message: 'Album Berhasil dihapus',
     };
   }
 }
