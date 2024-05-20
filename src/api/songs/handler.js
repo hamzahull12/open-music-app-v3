@@ -13,10 +13,11 @@ class SongsHandler {
     this._validator.songValidatePayload(req.payload);
 
     const data = req.payload;
-    console.log({ data });
 
     // business logic process
     const songId = await this._service.addSong(data);
+
+    // send response to client
     const response = h.response({
       status: 'success',
       data: {
