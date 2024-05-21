@@ -50,6 +50,20 @@ class SongsHandler {
       },
     };
   }
+
+  async putSongByIdHandler(req) {
+    this._validator.songValidatePayload(req.payload);
+
+    const { id } = req.params;
+    const data = req.payload;
+
+    await this._service.updateSongById(id, data);
+
+    return {
+      status: 'success',
+      message: 'Lagu berhasil diperbarui',
+    };
+  }
 }
 
 module.exports = SongsHandler;
