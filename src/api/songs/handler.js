@@ -37,6 +37,19 @@ class SongsHandler {
       },
     };
   }
+
+  async getSongByIdHandler(req) {
+    const { id } = req.params;
+
+    const song = await this._service.getSongById(id);
+
+    return {
+      status: 'success',
+      data: {
+        song,
+      },
+    };
+  }
 }
 
 module.exports = SongsHandler;
