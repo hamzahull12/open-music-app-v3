@@ -64,6 +64,17 @@ class SongsHandler {
       message: 'Lagu berhasil diperbarui',
     };
   }
+
+  async deleteSongByIdHandler(req) {
+    const { id } = req.params;
+
+    await this._service.deleteSongById(id);
+
+    return {
+      status: 'success',
+      message: 'Lagu Berhasil dihapus',
+    };
+  }
 }
 
 module.exports = SongsHandler;
