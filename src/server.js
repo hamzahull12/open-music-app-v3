@@ -76,7 +76,7 @@ const init = async () => {
   });
 
   await server.start();
-  console.log(`Server Runnig At ${server.info.uri}`);
+  console.log(`Server Running At ${server.info.uri}`);
 };
 
 init();

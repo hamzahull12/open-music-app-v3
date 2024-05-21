@@ -30,13 +30,18 @@ class AlbumsHandler {
     const { id } = req.params;
 
     // business logic process for get data
-    const album = await this._service.getAlbumById(id);
+    const albums = await this._service.getAlbumById(id);
+    const songs = await this._service.getSongInAlbum(id);
 
     // send response to client
     return {
       status: 'success',
       data: {
-        album,
+        // optional v1 get songs in album with spread two var
+        album: {
+          ...albums,
+          songs,
+        },
       },
     };
   }
