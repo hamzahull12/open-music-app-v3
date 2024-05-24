@@ -1,7 +1,9 @@
 require('dotenv').config();
 
 const Hapi = require('@hapi/hapi');
+const Jwt = require('@hapi/jwt');
 const config = require('./utils/config');
+
 const ClientError = require('./exceptions/ClientError');
 
 const AlbumsService = require('./services/postgres/AlbumsService');
@@ -34,6 +36,31 @@ const init = async () => {
         origin: [' * '],
       },
     },
+  });
+
+  // registrasi plugin eksternal
+  await server.register([
+    {
+      plugin: Jwt,
+    },
+  ]);
+
+  // mendefinisikan strategy autentikasi jwt
+
+  server.auth.strategy('music_jwt', 'jwt', {
+    key: config.token.accessToken,
+    verify: {
+      aud: false,
+      iss: false,
+      sub: false,
+      maxAgeSec: config.token.tokenAge,
+    },
+    validate: (artifacts) => ({
+      isValid: true,
+      credentials: {
+        id: artifacts.decoded.payload.id,
+      },
+    }),
   });
 
   await server.register([
