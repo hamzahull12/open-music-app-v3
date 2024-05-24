@@ -48,7 +48,7 @@ const init = async () => {
   // mendefinisikan strategy autentikasi jwt
 
   server.auth.strategy('music_jwt', 'jwt', {
-    key: config.token.accessToken,
+    keys: config.token.accessToken,
     verify: {
       aud: false,
       iss: false,
