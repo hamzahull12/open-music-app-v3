@@ -36,8 +36,19 @@ const mapDBToGetSongs = ({
   performer,
 });
 
+const mapDBToGetPLaylists = ({
+  id,
+  name,
+  username,
+}) => ({
+  id,
+  name,
+  username,
+});
+
 module.exports = {
   mapDBToAlbumsModel,
   mapDBToGetByIdSongs,
   mapDBToGetSongs,
+  mapDBToGetPLaylists,
 };
