@@ -11,5 +11,8 @@ const config = {
     tokenAge: process.env.ACCESS_TOKEN_AGE,
 
   },
+  ampq: {
+    rabbitServ: process.env.RABBITMQ_SERVER,
+  },
 };
 module.exports = config;
